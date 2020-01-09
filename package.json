@@ -1,0 +1,27 @@
+{
+  "name": "information-design-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaanKos/infortmation-design-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaanKos/infortmation-design-project/issues"
+  },
+  "homepage": "https://github.com/DaanKos/infortmation-design-project#readme",
+  "devDependencies": {
+    "rollup": "^1.26.3"
+  },
+  "dependencies": {
+    "d3": "^5.12.0"
+  }
+}
