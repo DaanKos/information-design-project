@@ -1,72 +1,60 @@
-import createFinalArray from "./utils/createFinalArray";
-import * as d3 from 'd3'
-import { feature } from 'topojson';
-const { select, geoPath, geoNaturalEarth1 } = d3;
+import testdata from "./utils/testdata";
+import * as d3 from 'd3';
 
 function createViz() {
-  createFinalArray().then(result => {
-    console.log("Result given to createViz: ", result);
-    console.log("Can create viz in this function, result is available...");
+  console.log("Create viz is running...");
 
-    const svg = select('svg')
-    const projection = geoNaturalEarth1()
-    const pathGenerator = geoPath().projection(projection)
+  var maindivs = d3.select('#parent').selectAll('p').data(testdata).enter().append('div').append('div').attr('class', 'planeetDiv');
 
-    var g = svg.append('g');
+  var textdivs = maindivs.append('div').attr('class', 'textDiv');
+          
+  textdivs.append('p')
+      .text(d => d.bedrijfsnaam);
 
-    setupMap()
-    drawMap(result)
+  textdivs.append('p')
+      .text(d => "Winstpercentage: "+(d.perc_winst)+"%");
 
-    svg.call(d3.zoom().scaleExtent([1 / 8, 24]).on('zoom', onzoom));
+  maindivs.append('div')
+      .append('svg')
+      .attr("width", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*60)
+      .attr("height", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*60)
+      .append('circle')
+      .attr("cx", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*30)
+      .attr("cy", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*30)
+      .attr("r", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*30)
+      .style("fill", function(d) {
+        if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 0 && d.thuiszorg == 0) {
+            return "url(#Rood)";
+        } else if(d.geestelijkegezondheidszorg == 0 && d.gehandicaptenzorg == 1 && d.thuiszorg == 0) {
+            return "url(#Geel)";
+        } else if(d.geestelijkegezondheidszorg == 0 && d.gehandicaptenzorg == 0 && d.thuiszorg == 1) {
+            return "url(#Groen)";
+        } else if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 1 && d.thuiszorg == 0) {
+            return "url(#GeelRood)";
+        } else if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 0 && d.thuiszorg == 1) {
+            return "url(#GroenRood)";
+        } else if(d.geestelijkegezondheidszorg == 0 && d.gehandicaptenzorg == 1 && d.thuiszorg == 1) {
+            return "url(#GeelGroen)";
+        } else if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 1 && d.thuiszorg == 1) {
+            return "url(#RoodGeelGroen)";
+        }
+      });
 
-    function onzoom() {
-      g.attr('transform', d3.event.transform);
-    }
-
-    function setupMap(){      
-      g
-        .append('path')
-        .attr('class', 'sphere')
-        .attr('d', pathGenerator({ type: 'Sphere' }))
-    }
-
-    function drawMap(result) {
-      d3.json('https://unpkg.com/world-atlas@1.1.4/world/110m.json')
-        .then(data => {
-          console.log(data);
-          const countries = feature(data, data.objects.countries);
-          console.log(countries)
-          g
-            .selectAll('path')
-            .data(countries.features)
-            .enter()
-            .append('path')
-            .attr('class', 'country')
-            .attr('d', pathGenerator)
-
-            plotCategoryPerCountry(result)
-        })
-    }
-
-    function plotCategoryPerCountry(result) {
-        console.log("This is result in d3: ", result);
-        
-        g
-            .selectAll('text')
-            .data(result)
-            .enter()
-            .append('text')
-            .attr('class', 'categoryLabel')
-            .attr('x', function(d) {
-              return projection([d.countryLong, d.countryLat])[0]
-            })
-            .attr('y', function(d) {
-              return projection([d.countryLong, d.countryLat])[1]
-            })
-            .text(d => d.categoryWithMostObjects.slice(4))
-            .style("text-anchor", "middle")
-    }
-  })
+  // function drawPlanets(result) {
+  //   console.log("This is result in d3: ", result);
+    
+  //   body
+  //       .selectAll('div')
+  //       .data(result)
+  //       .enter()
+  //       .append('div')
+  //       .attr('class', 'planeetDiv')
+  //       .insert('p')
+  //       .text(d => d.bedrijfsnaam)
+  //       .insert('svg')
+  // }
 }
+
+console.log("This is testdata, onderin", testdata);
 
 createViz();

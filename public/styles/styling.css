@@ -1,12 +1,43 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Zilla+Slab:400,500,600,700&display=swap');
+@import url("https://use.typekit.net/qlj2nhz.css");
 
 * {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Zilla Slab', serif;
+  color: #fff;
 }
 
 body {
   margin: 0px;
-  overflow: hidden;
+  background-color: #6B38E8;
+}
+
+#parent>div {
+  display: flex;
+  justify-content: center;
+}
+
+.planeetDiv {
+  display: flex;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  align-items: center;
+  max-width: 20em;
+}
+
+.textDiv {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.textDiv p:first-of-type {
+  font-size: 1.2em;
+  font-weight: 900;
+  margin: 0 .5em .25em 0;
+}
+
+.textDiv p:last-of-type {
+  font-size: 1em;
+  margin: 0;
 }
 
 h1 {
@@ -26,38 +57,6 @@ a {
   font-weight: 500;
 }
 
-.sphere {
-  fill: #c4faff;
-}
-
-.country {
-  fill: #a1ffa7;
-  stroke: black;
-  stroke-opacity: 0.1;
-}
-
-.categoryLabel {
-  font-size: .5em;
-  font-weight: 400;
-}
-
-.svgWrap {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-svg {
-  width: 100%;
-  height: 32.5em;
-  background-color: #c4faff;
-}
-
-circle {
-  fill: white;
-	stroke: black;
-  stroke-width: .5;
-}
 
 
   

@@ -7,14 +7,44 @@
     <link rel="stylesheet" href="styles/styling.css">
     <script src="https://unpkg.com/d3@5.7.0/dist/d3.min.js"></script>
     <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
-    <title>De categorie met de meeste objecten, per land - visualisatie</title>
+    <title>Zorgstelsel</title>
 </head>
 <body>
-    <h1>Wat levert ieder land aan de collectie van het NMVW?</h1>
-    <h2>De categorie met de meeste objecten, per land</h2>
-    <div class="svgWrap">
-        <svg></svg>
-    </div>
+    <svg width="0" height="0">
+        <defs>
+            <linearGradient id="Geel" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#FAFF2E;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:.75" />
+            </linearGradient>
+            <linearGradient id="Rood" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#F65645;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:.75" />
+            </linearGradient>
+            <linearGradient id="Groen" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#1BEAAE;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:.75" />
+            </linearGradient>
+            <linearGradient id="GeelRood" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#FAFF2E;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#F65645;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="GeelGroen" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#FAFF2E;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#1BEAAE;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="GroenRood" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#1BEAAE;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#F65645;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="RoodGeelGroen" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#F65645;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#FAFF2E;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#1BEAAE;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+    </svg>
+    <h1>Verken het zorgstelsel</h1>
+    <div id="parent"></div  >
     <a href="https://github.com/DaanKos/information-design-project">Lees meer over dit project op de GitHub pagina</a>
     <script src="scripts/bundle.js"></script>
 </body>

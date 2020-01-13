@@ -1,322 +1,241 @@
-(function (d3, topojson) {
-    'use strict';
+(function (d3) {
+  'use strict';
 
-    // Function that compares the objects in an array, and returns a new, single array
-    // Creates array that contains one object per country, contains the categoryWithMostObjects for this country
+  var testdata = [
+    {
+      "concerncode": "2CJEQWRMRU",
+      "bedrijfsnaam": "De Haan Faber (V.O.F)",
+      "plaats": "Huizen",
+      "geestelijkegezondheidszorg": 1,
+      "gehandicaptenzorg": 0,
+      "thuiszorg": 1,
+      "omzet": 2664854,
+      "winst": 90979,
+      "personeelskostentotaal": 1855535,
+      "fte": 33.2,
+      "jaar": 2018,
+      "perc_winst": 3.4,
+      "perc_loon": 69.6,
+      "omzet_fte": 80266.7
+    },
+    {
+      "concerncode": "2QVTUVPPLT",
+      "bedrijfsnaam": "Klein Voorhout (Stichting)",
+      "plaats": "BEERTA",
+      "geestelijkegezondheidszorg": 1,
+      "gehandicaptenzorg": 1,
+      "thuiszorg": 1,
+      "omzet": 1687209,
+      "winst": 13223,
+      "personeelskostentotaal": 1239930,
+      "fte": 20.89,
+      "jaar": 2018,
+      "perc_winst": 0.8,
+      "perc_loon": 73.5,
+      "omzet_fte": 80766.3
+    },
+    {
+      "concerncode": "2RTZ4S8SQR",
+      "bedrijfsnaam": "Home Instead Thuisservice Nijmegen B.V.",
+      "plaats": "Nijmegen",
+      "geestelijkegezondheidszorg": 1,
+      "gehandicaptenzorg": 1,
+      "thuiszorg": 0,
+      "omzet": 3613820,
+      "winst": 202280,
+      "personeelskostentotaal": 2819358,
+      "fte": 69,
+      "jaar": 2018,
+      "perc_winst": 5.6,
+      "perc_loon": 78,
+      "omzet_fte": 52374.2
+    },
+    {
+      "concerncode": "2XAW2KNT47",
+      "bedrijfsnaam": "De Amethyst (V.O.F.)",
+      "plaats": "Angeren",
+      "geestelijkegezondheidszorg": 0,
+      "gehandicaptenzorg": 1,
+      "thuiszorg": 1,
+      "omzet": 1125045,
+      "winst": 333944,
+      "personeelskostentotaal": 560822,
+      "fte": 13.95,
+      "jaar": 2018,
+      "perc_winst": 29.7,
+      "perc_loon": 49.8,
+      "omzet_fte": 80648.4
+    },
+    {
+      "concerncode": "3538WBEPU9",
+      "bedrijfsnaam": "Intermedicare (Stichting)",
+      "plaats": "BUSSUM",
+      "geestelijkegezondheidszorg": 0,
+      "gehandicaptenzorg": 0,
+      "thuiszorg": 1,
+      "omzet": 1209512,
+      "winst": -4281,
+      "personeelskostentotaal": 272955,
+      "fte": 18.5,
+      "jaar": 2018,
+      "perc_winst": 0.4,
+      "perc_loon": 22.6,
+      "omzet_fte": 65379
+    },
+    {
+      "concerncode": "353H9Q688B",
+      "bedrijfsnaam": "ActiVite (Stichting)",
+      "plaats": "LEIDERDORP",
+      "geestelijkegezondheidszorg": 1,
+      "gehandicaptenzorg": 0,
+      "thuiszorg": 0,
+      "omzet": 94118604,
+      "winst": 4425226,
+      "personeelskostentotaal": 73131788,
+      "fte": 1547.5,
+      "jaar": 2018,
+      "perc_winst": 4.7,
+      "perc_loon": 77.7,
+      "omzet_fte": 60819.8
+    },
+    {
+      "concerncode": "353QTD8G7G",
+      "bedrijfsnaam": "De ZorgZaak B.V.",
+      "plaats": "HOOGEVEEN",
+      "geestelijkegezondheidszorg": 0,
+      "gehandicaptenzorg": 1,
+      "thuiszorg": 0,
+      "omzet": 20899060,
+      "winst": 1223364,
+      "personeelskostentotaal": 16617721,
+      "fte": 371.07,
+      "jaar": 2018,
+      "perc_winst": 5.9,
+      "perc_loon": 79.5,
+      "omzet_fte": 56321.1
+    },
+    {
+      "concerncode": "35566VNXNK",
+      "bedrijfsnaam": "Triade-Vitree (Stichting)",
+      "plaats": "LELYSTAD",
+      "geestelijkegezondheidszorg": 0,
+      "gehandicaptenzorg": 1,
+      "thuiszorg": 0,
+      "omzet": 119999392,
+      "winst": 889459,
+      "personeelskostentotaal": 86145224,
+      "fte": 1330.1,
+      "jaar": 2018,
+      "perc_winst": 0.7,
+      "perc_loon": 71.8,
+      "omzet_fte": 90218.3
+    },
+    {
+      "concerncode": "3557GA5NEG",
+      "bedrijfsnaam": "t Gerack (Stichting)",
+      "plaats": "UITHUIZEN",
+      "geestelijkegezondheidszorg": 0,
+      "gehandicaptenzorg": 0,
+      "thuiszorg": 1,
+      "omzet": 9795064,
+      "winst": -1285959,
+      "personeelskostentotaal": 7235908,
+      "fte": 140.89,
+      "jaar": 2018,
+      "perc_winst": 13.1,
+      "perc_loon": 73.9,
+      "omzet_fte": 69522.8
+    },
+    {
+      "concerncode": "355RJHL7K7",
+      "bedrijfsnaam": "Woon/zorgcentrum Het Hooge Heem (Stichting)",
+      "plaats": "GROOTEGAST",
+      "geestelijkegezondheidszorg": 0,
+      "gehandicaptenzorg": 0,
+      "thuiszorg": 1,
+      "omzet": 7147734,
+      "winst": 436007,
+      "personeelskostentotaal": 4217032,
+      "fte": 86,
+      "jaar": 2018,
+      "perc_winst": 6.1,
+      "perc_loon": 59,
+      "omzet_fte": 83113.2
+    },
+    {
+      "concerncode": "3568ZQQZ8T",
+      "bedrijfsnaam": "Stichting Epilepsie Instellingen Nederland (SEIN)",
+      "plaats": "HOOFDDORP",
+      "geestelijkegezondheidszorg": 0,
+      "gehandicaptenzorg": 1,
+      "thuiszorg": 0,
+      "omzet": 91774000,
+      "winst": 215000,
+      "personeelskostentotaal": 70346000,
+      "fte": 982.9,
+      "jaar": 2018,
+      "perc_winst": 0.2,
+      "perc_loon": 76.7,
+      "omzet_fte": 93370.6
+    }
+  ];
 
-    function compareArray(results) {
-        return results.reduce((newItems, currentItem) => {
+  function createViz() {
+    console.log("Create viz is running...");
+
+    var maindivs = d3.select('#parent').selectAll('p').data(testdata).enter().append('div').append('div').attr('class', 'planeetDiv');
+
+    var textdivs = maindivs.append('div').attr('class', 'textDiv');
             
-            // Is there an item that has a country property that's equal to the current item country property?
-            const foundItem = newItems.find(item => item.country === currentItem.country);
+    textdivs.append('p')
+        .text(d => d.bedrijfsnaam);
 
-            // If the country doesn't exist in the new item array, create it as a new object with the necessary properties
-            if (!foundItem) {
-                const newItem = {
-                    country: currentItem.country,
-                    countryGeo: currentItem.countryGeo,
-                    countryLat: currentItem.countryLat,
-                    countryLong: currentItem.countryLong,
-                    categoryWithMostObjects: currentItem.mainCategory,
-                    objectCountTotal: currentItem.objectCountTotal,
-                };
+    textdivs.append('p')
+        .text(d => "Winstpercentage: "+(d.perc_winst)+"%");
 
-                // Push the new item to the newItems array
-                newItems.push(newItem);
-            } else if (foundItem.objectCountTotal < currentItem.objectCountTotal) {
-                // If the country does exist in the new item array, check if it's mainCategory objectCountTotal is bigger than the one of the country in the array
-                // Is it bigger? Replace the categoryWithMostObjects and objectCountTotal
-                // Is it smaller? Do nothing, as this means this mainCategory isn't the biggest of the country in question
-                foundItem.categoryWithMostObjects = currentItem.mainCategory;
-                foundItem.objectCountTotal = currentItem.objectCountTotal;
-            }
-
-            // Return newItems array
-            return newItems
-        }, [])
-    }
-
-    // Function that formats the given data
-    // Uses a parameter to determine what the mainCategory is, and has to be given data (results) which it will format
-    // Creates a new object structure for every object in the array
-    // Also combines all entries that have the same country property, resulting in an array which shows the amount of objects for the main category
-
-    function formatData(mainCategory, results) {
-        return results
-            .map(result => {
-                return {
-                    mainCategory,
-                    subCategory: result.subcategorieLabel.value,
-                    countryLabel: result.landLabel.value,
-                    countryGeo: result.land.value,
-                    countryLat: Number(result.lat.value),
-                    countryLong: Number(result.long.value),
-                    objectCount: Number(result.choCount.value)
-                }
-            }).reduce((newItems, currentItem) => {
-                // Is there an item that has a country property that's equal to the current item country property?
-                const foundItem = newItems.find(item => item.country === currentItem.countryLabel);
-
-                // If the country doesn't exist in the new item array, create it as a new object with the necessary properties
-                if (!foundItem) {
-                    const newItem = {
-                        country: currentItem.countryLabel,
-                        countryGeo: currentItem.countryGeo,
-                        countryLat: currentItem.countryLat,
-                        countryLong: currentItem.countryLong,
-                        mainCategory: currentItem.mainCategory,
-                        objectCountTotal: currentItem.objectCount
-                    };
-
-                    // Push the new item to the newItems array
-                    newItems.push(newItem);
-                } else {
-                    // If the country does exist in the new item array, add current item objectCount to objectCountTotal of that item
-                    foundItem.objectCountTotal = foundItem.objectCountTotal + currentItem.objectCount;
-                }
-
-                // Return newItems array
-                return newItems
-    		}, [])
-    }
-
-    // File that contains the query that's used in runQuery
-    // Changes according to the given parameter, which should be the termMasterId for the query
-
-    function queryCollection(termMasterId) {
-    	return `
-        #+ summary: Wapens query - haalt alle aantallen van de wapens subcategorieen op per land
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        PREFIX gn: <http://www.geonames.org/ontology#>
-        PREFIX dc: <http://purl.org/dc/elements/1.1/>
-        PREFIX dct: <http://purl.org/dc/terms/>
-        PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-        PREFIX edm: <http://www.europeana.eu/schemas/edm/>
-        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-        PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-        # tel aantallen per land
-        SELECT ?subcategorie ?subcategorieLabel ?lat ?long ?land ?landLabel (COUNT(?cho) AS ?choCount) WHERE {
-        # haal van een term in de thesaurus de subcategorieen op
-        <https://hdl.handle.net/20.500.11840/termmaster${termMasterId}> skos:narrower* ?subcategorie .
-        # haal de objecten van deze subcategorieen en de plaats
-        ?cho edm:isRelatedTo ?subcategorie .
-        ?cho dct:spatial ?plaats .
-        ?subcategorie skos:prefLabel ?subcategorieLabel .
-        # haal het landLabel op van de plaats
-        ?plaats skos:exactMatch/gn:parentCountry ?land .
-        ?land wgs84:lat ?lat .
-        ?land wgs84:long ?long .
-        ?land gn:name ?landLabel .
-        }
-        GROUP BY ?lat ?long ?land ?subcategorie ?landLabel ?subcategorieLabel
-        ORDER BY DESC(?choCount)
-        LIMIT 1000
-        `
-        }
-
-    // Function that runs the query and data retrieval
-
-    async function runQuery(mainCategory, termMasterId) {
-        // The following piece of code was written by user Razpudding (Laurens), from https://codepen.io/Razpudding/pen/LKMbwZ
-        // I have edited the code to fit my needs and use my own endpoint
-        //Github CMDA
-        const url ="https://api.data.netwerkdigitaalerfgoed.nl/datasets/ivo/NMVW/services/NMVW-17/sparql";
-      
-        //Note that the query is wrapped in es6 template strings to allow for easy copy pasting
-        const query = queryCollection(termMasterId);
-      
-        // Call the url with the query attached, output data
-        let formattedDataResponse = await fetch(url+"?query="+ encodeURIComponent(query) +"&format=json")
-        .then(res => res.json())
-        .then(json => {
-          // Put received json in a let
-          let results = json.results.bindings;
-          // Format the received data
-          let formattedData = formatData(mainCategory, results);
-      
-          // Return formatted data
-          return formattedData
+    maindivs.append('div')
+        .append('svg')
+        .attr("width", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*60)
+        .attr("height", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*60)
+        .append('circle')
+        .attr("cx", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*30)
+        .attr("cy", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*30)
+        .attr("r", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*30)
+        .style("fill", function(d) {
+          if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 0 && d.thuiszorg == 0) {
+              return "url(#Rood)";
+          } else if(d.geestelijkegezondheidszorg == 0 && d.gehandicaptenzorg == 1 && d.thuiszorg == 0) {
+              return "url(#Geel)";
+          } else if(d.geestelijkegezondheidszorg == 0 && d.gehandicaptenzorg == 0 && d.thuiszorg == 1) {
+              return "url(#Groen)";
+          } else if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 1 && d.thuiszorg == 0) {
+              return "url(#GeelRood)";
+          } else if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 0 && d.thuiszorg == 1) {
+              return "url(#GroenRood)";
+          } else if(d.geestelijkegezondheidszorg == 0 && d.gehandicaptenzorg == 1 && d.thuiszorg == 1) {
+              return "url(#GeelGroen)";
+          } else if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 1 && d.thuiszorg == 1) {
+              return "url(#RoodGeelGroen)";
+          }
         });
+
+    // function drawPlanets(result) {
+    //   console.log("This is result in d3: ", result);
       
-        // Return formatted data response from the executed fetch
-        return formattedDataResponse;
-    }
+    //   body
+    //       .selectAll('div')
+    //       .data(result)
+    //       .enter()
+    //       .append('div')
+    //       .attr('class', 'planeetDiv')
+    //       .insert('p')
+    //       .text(d => d.bedrijfsnaam)
+    //       .insert('svg')
+    // }
+  }
 
-    // File that contains the necessary categoryNames with their corresponding termMasterId's
-    // Gets used to loop through and exectute data retrieval
+  console.log("This is testdata, onderin", testdata);
 
-    var categoryArray = [
-        {
-            categoryName: "mainPopularCulture",
-            termMasterId: 10045782,
-        },
-        {
-            categoryName: "mainJachtVisserijVoedselgaring",
-            termMasterId: 2803,
-        },
-        {
-            categoryName: "mainWapens",
-            termMasterId: 2091,
-        },
-        {
-            categoryName: "mainLandTuinEnBosbouw",
-            termMasterId: 2819,
-        },
-        {
-            categoryName: "mainVeeteeltEnProducten",
-            termMasterId: 1843,
-        },
-        {
-            categoryName: "mainVoedingDrankGenotmiddelen",
-            termMasterId: 2839,
-        },
-        {
-            categoryName: "mainKledingEnPersoonlijkeversiering",
-            termMasterId: 2704,
-        },
-        {
-            categoryName: "mainLichaamsVerzorgingGeneeskundePersoonlijkcomfort",
-            termMasterId: 2718,
-        },
-        {
-            categoryName: "mainVestiging",
-            termMasterId: 2726,
-        },
-        {
-            categoryName: "mainNijverheidHandelEnDienstverlening",
-            termMasterId: 2754,
-        },
-        {
-            categoryName: "mainVervoer",
-            termMasterId: 2624,
-        },
-        {
-            categoryName: "mainCommunicatie",
-            termMasterId: 2634,
-        },
-        {
-            categoryName: "mainSociaalPolitiekJuridisch",
-            termMasterId: 2642,
-        },
-        {
-            categoryName: "mainLevenscyclus",
-            termMasterId: 2649,
-        },
-        {
-            categoryName: "mainReligieEnRitueel",
-            termMasterId: 2652,
-        },
-        {
-            categoryName: "mainKunst",
-            termMasterId: 2657,
-        },
-        {
-            categoryName: "mainOntspanningSportEnSpel",
-            termMasterId: 2676,
-        },
-        {
-            categoryName: "mainOnbepaald",
-            termMasterId: 1834,
-        },
-        {
-            categoryName: "mainStrijdEnOorlog",
-            termMasterId: 16239,
-        }
-      ];
+  createViz();
 
-    // Function that combines the received array's
-
-    function combineArrays() {
-        let combinedArray = [];
-      
-        categoryArray.map(categoryItem => {
-          combinedArray.push(runQuery(categoryItem.categoryName, categoryItem.termMasterId));
-        });
-      
-        return Promise.all(combinedArray).then(data => {
-          // The following line of code was written by user Gumbo from https://stackoverflow.com/a/10865042
-          // It merges the array of arrays (that was fed) to a single array
-          let merged = [].concat.apply([], data);
-          return merged
-        })
-    }
-
-    function createFinalArray() {
-        return combineArrays().then(result => {
-          console.log("Result given to combine array: ", result);
-          let compared = compareArray(result);
-          return compared
-        })
-    }
-
-    const { select, geoPath, geoNaturalEarth1 } = d3;
-
-    function createViz() {
-      createFinalArray().then(result => {
-        console.log("Result given to createViz: ", result);
-        console.log("Can create viz in this function, result is available...");
-
-        const svg = select('svg');
-        const projection = geoNaturalEarth1();
-        const pathGenerator = geoPath().projection(projection);
-
-        var g = svg.append('g');
-
-        setupMap();
-        drawMap(result);
-
-        svg.call(d3.zoom().scaleExtent([1 / 8, 24]).on('zoom', onzoom));
-
-        function onzoom() {
-          g.attr('transform', d3.event.transform);
-        }
-
-        function setupMap(){      
-          g
-            .append('path')
-            .attr('class', 'sphere')
-            .attr('d', pathGenerator({ type: 'Sphere' }));
-        }
-
-        function drawMap(result) {
-          d3.json('https://unpkg.com/world-atlas@1.1.4/world/110m.json')
-            .then(data => {
-              console.log(data);
-              const countries = topojson.feature(data, data.objects.countries);
-              console.log(countries);
-              g
-                .selectAll('path')
-                .data(countries.features)
-                .enter()
-                .append('path')
-                .attr('class', 'country')
-                .attr('d', pathGenerator);
-
-                plotCategoryPerCountry(result);
-            });
-        }
-
-        function plotCategoryPerCountry(result) {
-            console.log("This is result in d3: ", result);
-            
-            g
-                .selectAll('text')
-                .data(result)
-                .enter()
-                .append('text')
-                .attr('class', 'categoryLabel')
-                .attr('x', function(d) {
-                  return projection([d.countryLong, d.countryLat])[0]
-                })
-                .attr('y', function(d) {
-                  return projection([d.countryLong, d.countryLat])[1]
-                })
-                .text(d => d.categoryWithMostObjects.slice(4))
-                .style("text-anchor", "middle");
-        }
-      });
-    }
-
-    createViz();
-
-}(d3, topojson));
+}(d3));
