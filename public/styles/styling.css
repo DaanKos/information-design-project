@@ -33,11 +33,15 @@ body {
   font-size: 1.2em;
   font-weight: 900;
   margin: 0 .5em .25em 0;
+  display: block;
+  width: 100%;
 }
 
 .textDiv p:last-of-type {
   font-size: 1em;
   margin: 0;
+  display: block;
+  width: 100%;
 }
 
 h1 {
