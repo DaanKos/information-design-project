@@ -18,8 +18,8 @@ body {
 
 .planeetDiv {
   display: flex;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 2em;
+  margin-bottom: 2em;
   align-items: center;
   max-width: 20em;
 }
