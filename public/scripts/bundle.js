@@ -9,11 +9,7 @@
         console.log("This is givenData in parseData: ", givenData);
         console.log("This is givenCity in parseData: ", givenCity);
         
-        let filteredYear = givenData.filter(function(d) {
-            return d.jaar == 2018;
-        });
-        
-        let selecteddata = filteredYear.filter(function(d) {
+        let selecteddata = givenData.filter(function(d) {
             return lowerCaseString(d.plaats) == lowerCaseString(givenCity);
         });
         
@@ -21,36 +17,44 @@
         return selecteddata
     }
 
-    function parseCsv(givenCity){
+    async function parseCsv(){
     const dataSource = '/src/data/df_export_2011_2018.csv';
-    const data = d3.csv(dataSource, transformRow)
+
+    function transformRow(row){
+        return {
+              concerncode: row["concerncode"],
+              bedrijfsnaam: row["bedrijfsnaam"],
+              plaats: row["plaats"],
+              geestelijkegezondheidszorg: row["geestelijkegezondheidszorg"],
+              gehandicaptenzorg: row["gehandicaptenzorg"],
+              thuiszorg: row["thuiszorg"],
+              omzet: row["omzet"],
+              winst: row["winst"],
+              personeelskostentotaal: row["personeelskostentotaal"],
+              fte: row["fte"],
+              jaar: row["jaar"],
+              perc_winst: row["perc_winst"],
+              perc_loon: row["perc_loon"],
+              omzet_fte: row["omzet_fte"]
+        }
+    }
+    const data = await d3.csv(dataSource, transformRow)
     	.then(data => {
             console.log("This is data in parseCsv: ", data);
-            parseData(data, givenCity);
+            const filteredYear = data.filter(function(d) {
+                return d.jaar == 2018;
+            });
+            return filteredYear;
     });
-    function transformRow(row){
-      return {
-            concerncode: row["concerncode"],
-            bedrijfsnaam: row["bedrijfsnaam"],
-            plaats: row["plaats"],
-            geestelijkegezondheidszorg: row["geestelijkegezondheidszorg"],
-            gehandicaptenzorg: row["gehandicaptenzorg"],
-            thuiszorg: row["thuiszorg"],
-            omzet: row["omzet"],
-            winst: row["winst"],
-            personeelskostentotaal: row["personeelskostentotaal"],
-            fte: row["fte"],
-            jaar: row["jaar"],
-            perc_winst: row["perc_winst"],
-            perc_loon: row["perc_loon"],
-            omzet_fte: row["omzet_fte"]
-      }
-    }}
+
+    return data;
+    }
 
     function createViz(givenData) {
         console.log("Create viz is running...");
+        console.log("This is given data at the moment of createViz firing: ", givenData);
 
-        let maindivs = d3.select('#parent').selectAll('p').data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
+        let maindivs = d3.select('#parent').selectAll('div').remove().data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
 
         let textdivs = maindivs.append('div').attr('class', 'textDiv');
             
@@ -140,10 +144,12 @@
 
     function passAllFunctions(){
         var givenValue = document.getElementById("plaats").value;
-        parseCsv(givenValue).then(result => {
-            createViz(result);
+        data.then(result => {
+            createViz(parseData(result, givenValue));
         });
     }
+    const data = parseCsv();
+
     document.getElementById("test123").onclick = function() {passAllFunctions();};
 
 }(d3));

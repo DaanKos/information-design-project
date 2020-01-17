@@ -25,5 +25,5 @@ function transformRow(row){
         perc_loon: row["perc_loon"],
         omzet_fte: row["omzet_fte"]
   }
-};
+  };
 }; 
