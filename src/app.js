@@ -1,11 +1,14 @@
-import testdata from "./utils/testdata";
-// import createFinalArray from "./utils/createFinalArray";
+// import testdata from "./utils/testdata";
+import parseData from "./utils/parseData";
+// import parseCsv from './utils/parseCsv';
 import * as d3 from 'd3';
 
-function createViz() {
+let givenCity = 'Groningen';
+
+function createViz(givenData) {
     console.log("Create viz is running...");
 
-    let maindivs = d3.select('#parent').selectAll('p').data(testdata).enter().append('div').append('div').attr('class', 'planeetDiv');
+    let maindivs = d3.select('#parent').selectAll('p').data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
 
     let textdivs = maindivs.append('div').attr('class', 'textDiv');
         
@@ -16,30 +19,87 @@ function createViz() {
         .text(d => "Winstpercentage: "+(d.perc_winst)+"%");
 
     maindivs.append('div')
+        .attr('class', 'svgDiv')
         .append('svg')
-        .attr("width", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*60)
-        .attr("height", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*60)
+        .attr("width", function(d) {
+            if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                return 30;
+            } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) > 180) {
+                return 180;
+            } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) < 30) {
+                return 30;
+            } else {
+                return ((Math.sqrt((d.perc_winst)/(Math.PI)))*45)
+            }
+        })
+        .attr("height", function(d) {
+            if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                return 30;
+            } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) > 180) {
+                return 180;
+            } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) < 30) {
+                return 30;
+            } else {
+                return ((Math.sqrt((d.perc_winst)/(Math.PI)))*45)
+            }
+        })
         .append('circle')
-        .attr("cx", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*30)
-        .attr("cy", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*30)
-        .attr("r", d => (Math.sqrt((d.perc_winst)/(Math.PI)))*30)
+        .attr("cx", function(d) {
+            if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                return 15;
+            } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
+                return 90;
+            } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) < 15) {
+                return 15;
+            } else {
+                return ((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5)
+            }
+        })
+        .attr("cy", function(d) {
+            if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                return 15;
+            } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
+                return 90;
+            } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) < 15) {
+                return 15;
+            } else {
+                return ((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5)
+            }
+        })
+        .attr("r", function(d) {
+            if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                return 15;
+            } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
+                return 90;
+            } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) < 15) {
+                return 15;
+            } else {
+                return ((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5)
+            }
+        })
         .style("fill", function(d) {
-            if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 0 && d.thuiszorg == 0) {
+            if(d.geestelijkegezondheidszorg == 'ja' && d.gehandicaptenzorg == 'NA' && d.thuiszorg == 'NA') {
                 return "url(#Rood)";
-            } else if(d.geestelijkegezondheidszorg == 0 && d.gehandicaptenzorg == 1 && d.thuiszorg == 0) {
+            } else if(d.geestelijkegezondheidszorg == 'NA' && d.gehandicaptenzorg == 'ja' && d.thuiszorg == 'NA') {
                 return "url(#Geel)";
-            } else if(d.geestelijkegezondheidszorg == 0 && d.gehandicaptenzorg == 0 && d.thuiszorg == 1) {
+            } else if(d.geestelijkegezondheidszorg == 'NA' && d.gehandicaptenzorg == 'NA' && d.thuiszorg == 'ja') {
                 return "url(#Groen)";
-            } else if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 1 && d.thuiszorg == 0) {
+            } else if(d.geestelijkegezondheidszorg == 'ja' && d.gehandicaptenzorg == 'ja' && d.thuiszorg == 'NA') {
                 return "url(#GeelRood)";
-            } else if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 0 && d.thuiszorg == 1) {
+            } else if(d.geestelijkegezondheidszorg == 'ja' && d.gehandicaptenzorg == 'NA' && d.thuiszorg == 'ja') {
                 return "url(#GroenRood)";
-            } else if(d.geestelijkegezondheidszorg == 0 && d.gehandicaptenzorg == 1 && d.thuiszorg == 1) {
+            } else if(d.geestelijkegezondheidszorg == 'NA' && d.gehandicaptenzorg == 'ja' && d.thuiszorg == 'ja') {
                 return "url(#GeelGroen)";
-            } else if(d.geestelijkegezondheidszorg == 1 && d.gehandicaptenzorg == 1 && d.thuiszorg == 1) {
+            } else if(d.geestelijkegezondheidszorg == 'ja' && d.gehandicaptenzorg == 'ja' && d.thuiszorg == 'ja') {
                 return "url(#RoodGeelGroen)";
             }
     });
 }
 
-createViz();
+function passAllFunctions(){
+    let dataForUse = parseData(givenCity);
+    console.log(dataForUse);
+    createViz(dataForUse);
+};
+
+passAllFunctions();

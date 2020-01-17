@@ -18,21 +18,30 @@ body {
 
 .planeetDiv {
   display: flex;
+  justify-content: space-between;
   margin-top: 2em;
   margin-bottom: 2em;
   align-items: center;
   max-width: 20em;
+  min-width: 20em;
 }
 
 .textDiv {
   display: flex;
   flex-wrap: wrap;
+  margin-right: 1em;
+}
+
+.svgDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .textDiv p:first-of-type {
   font-size: 1.2em;
   font-weight: 900;
-  margin: 0 .5em .25em 0;
+  margin: 0;
   display: block;
   width: 100%;
 }

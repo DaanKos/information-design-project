@@ -268,7 +268,7 @@ export default
     "personeelskostentotaal": 474203,
     "fte": 7.41,
     "jaar": 2018,
-    "perc_winst": 35.4,
+    "perc_winst": 50,
     "perc_loon": 79.4,
     "omzet_fte": 80627.4
   },
@@ -300,7 +300,7 @@ export default
     "personeelskostentotaal": 1405872,
     "fte": 23.42,
     "jaar": 2018,
-    "perc_winst": 2.7,
+    "perc_winst": 60,
     "perc_loon": 77.3,
     "omzet_fte": 77624.3
   },
