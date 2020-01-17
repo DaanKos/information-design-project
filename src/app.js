@@ -1,9 +1,5 @@
-// import testdata from "./utils/testdata";
-import parseData from "./utils/parseData";
-// import parseCsv from './utils/parseCsv';
+import parseCsv from "./utils/parseCsv";
 import * as d3 from 'd3';
-
-let givenCity = 'Groningen';
 
 function createViz(givenData) {
     console.log("Create viz is running...");
@@ -97,9 +93,10 @@ function createViz(givenData) {
 }
 
 function passAllFunctions(){
-    let dataForUse = parseData(givenCity);
-    console.log(dataForUse);
-    createViz(dataForUse);
+    var givenValue = document.getElementById("plaats").value;
+    parseCsv(givenValue).then(result => {
+        createViz(result)
+    })
 };
 
-passAllFunctions();
+document.getElementById("test123").onclick = function() {passAllFunctions()};

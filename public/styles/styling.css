@@ -11,6 +11,14 @@ body {
   background-color: #6B38E8;
 }
 
+input {
+  color: black;
+}
+
+button {
+  color: black;
+}
+
 #parent>div {
   display: flex;
   justify-content: center;
