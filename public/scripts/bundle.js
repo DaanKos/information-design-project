@@ -18,7 +18,7 @@
     }
 
     async function parseCsv(givenYear){
-    const dataSource = '/src/data/df_export_2011_2018.csv';
+    const dataSource = './public/data/df_export_2011_2018.csv';
 
     function transformRow(row){
         return {
