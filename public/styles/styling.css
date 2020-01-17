@@ -11,12 +11,39 @@ body {
   background-color: #6B38E8;
 }
 
-input {
-  color: black;
+.searchFieldWrap {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  right: 0;
 }
 
-button {
+.searchFieldWrap button {
+  display: block;
   color: black;
+  background-color: white;
+  font-size: 1em;
+  padding: .5em;
+  border: none;
+  border-radius: .5em;
+}
+
+.searchFieldWrap input {
+  display: block;
+  color: black;
+  background-color: white;
+  font-size: 1em;
+  padding: .5em;
+  border: none;
+  border-radius: .5em;
+  margin-right: .5em;
+}
+
+#parent {
+  margin-top: 5em;
 }
 
 #parent>div {
@@ -74,6 +101,7 @@ h2 {
 a {
   display: block;
   margin: 1em;
+  margin-top: 5em;
   text-align: center;
   font-weight: 500;
 }
