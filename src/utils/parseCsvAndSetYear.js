@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 
-export default async function parseCsv(){
+export default async function parseCsv(givenYear){
 const dataSource = '/src/data/df_export_2011_2018.csv'
 
 function transformRow(row){
@@ -22,14 +22,14 @@ function transformRow(row){
     }
 };
 
-const data = await d3.csv(dataSource, transformRow)
+const finalData = await d3.csv(dataSource, transformRow)
 	.then(data => {
         console.log("This is data in parseCsv: ", data);
         const filteredYear = data.filter(function(d) {
-            return d.jaar == 2018;
+            return d.jaar == givenYear;
         });
         return filteredYear;
 });
 
-return data;
+return finalData;
 }; 

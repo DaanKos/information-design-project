@@ -17,7 +17,7 @@
         return selecteddata
     }
 
-    async function parseCsv(){
+    async function parseCsv(givenYear){
     const dataSource = '/src/data/df_export_2011_2018.csv';
 
     function transformRow(row){
@@ -38,23 +38,24 @@
               omzet_fte: row["omzet_fte"]
         }
     }
-    const data = await d3.csv(dataSource, transformRow)
+    const finalData = await d3.csv(dataSource, transformRow)
     	.then(data => {
             console.log("This is data in parseCsv: ", data);
             const filteredYear = data.filter(function(d) {
-                return d.jaar == 2018;
+                return d.jaar == givenYear;
             });
             return filteredYear;
     });
 
-    return data;
+    return finalData;
     }
 
     function createViz(givenData) {
         console.log("Create viz is running...");
         console.log("This is given data at the moment of createViz firing: ", givenData);
 
-        let maindivs = d3.select('#parent').selectAll('div').remove().data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
+        d3.select('#parent').selectAll('div').remove();
+        let maindivs = d3.select('#parent').selectAll('div').data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
 
         let textdivs = maindivs.append('div').attr('class', 'textDiv');
             
@@ -148,7 +149,7 @@
             createViz(parseData(result, givenValue));
         });
     }
-    const data = parseCsv();
+    const data = parseCsv(2018);
 
     document.getElementById("test123").onclick = function() {passAllFunctions();};
 

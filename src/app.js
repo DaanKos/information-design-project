@@ -1,13 +1,13 @@
 import parseData from "./utils/parseData";
-// import parseCsv from "./utils/parseCsv";
-import parseCsvTest from "./utils/parseCsvTest";
+import parseCsvAndSetYear from "./utils/parseCsvAndSetYear";
 import * as d3 from 'd3';
 
 function createViz(givenData) {
     console.log("Create viz is running...");
     console.log("This is given data at the moment of createViz firing: ", givenData);
 
-    let maindivs = d3.select('#parent').selectAll('div').remove().data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
+    d3.select('#parent').selectAll('div').remove()
+    let maindivs = d3.select('#parent').selectAll('div').data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
 
     let textdivs = maindivs.append('div').attr('class', 'textDiv');
         
@@ -102,6 +102,6 @@ function passAllFunctions(){
     });
 };
 
-const data = parseCsvTest();
+const data = parseCsvAndSetYear(2018);
 
 document.getElementById("test123").onclick = function() {passAllFunctions()};
