@@ -1,20 +1,30 @@
 (function (d3) {
     'use strict';
 
-    function lowerCaseString(string) {
-        return string.toLowerCase();
-    }
-
     function parseData(givenData, givenCity){  
         console.log("This is givenData in parseData: ", givenData);
         console.log("This is givenCity in parseData: ", givenCity);
         
+        // All sorting functions based on code by Olayinka Omole and James Hibberd found at https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
+        function alphabeticalSort(a, b) {
+            // Use toUpperCase() to ignore character casing
+            const nameA = a.bedrijfsnaam.toLowerCase();
+            const nameB = b.bedrijfsnaam.toLowerCase();
+          
+            let comparison = 0;
+            if (nameA > nameB) {
+              comparison = 1;
+            } else if (nameA < nameB) {
+              comparison = -1;
+            }
+            return comparison;
+        }      
         let selecteddata = givenData.filter(function(d) {
-            return lowerCaseString(d.plaats) == lowerCaseString(givenCity);
+            return d.plaats.toLowerCase() == givenCity.toLowerCase();
         });
-        
-        console.log("This is selecteddata in parseData: ", selecteddata);
-        return selecteddata
+
+        selecteddata.sort(alphabeticalSort);
+        return selecteddata;
     }
 
     async function parseCsv(givenYear){

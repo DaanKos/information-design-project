@@ -19,6 +19,8 @@ body {
   position: fixed;
   left: 0;
   right: 0;
+  background-color:#6B38E8;
+  padding: .25em 0 .25em 0;
 }
 
 .searchFieldWrap button {
