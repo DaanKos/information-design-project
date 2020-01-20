@@ -75,7 +75,7 @@ body {
 }
 
 .textDiv p:first-of-type {
-  font-size: 1.2em;
+  font-size: 1.05em;
   font-weight: 900;
   margin: 0;
   display: block;
@@ -83,7 +83,7 @@ body {
 }
 
 .textDiv p:last-of-type {
-  font-size: 1em;
+  font-size: .85em;
   margin: 0;
   display: block;
   width: 100%;
