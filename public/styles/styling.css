@@ -63,16 +63,16 @@ body {
   min-width: 20em;
 }
 
-.textDiv {
-  display: flex;
-  flex-wrap: wrap;
+.planeetDiv div:first-of-type {
   margin-right: 1em;
 }
 
-.svgDiv {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.planeetDiv div:first-of-type p {
+  text-align: right;
+}
+
+.planeetDiv div:last-of-type p {
+  text-align: left;
 }
 
 .textDiv p:first-of-type {
@@ -88,6 +88,17 @@ body {
   margin: 0;
   display: block;
   width: 100%;
+}
+
+.textDiv {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.svgDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
