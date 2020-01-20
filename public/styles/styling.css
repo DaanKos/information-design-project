@@ -58,8 +58,8 @@ body {
   margin-top: 2em;
   margin-bottom: 2em;
   align-items: center;
-  max-width: 20em;
-  min-width: 20em;
+  max-width: 18em;
+  /* min-width: 20em; */
 }
 
 .planeetDiv div:first-of-type {
