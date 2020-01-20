@@ -244,7 +244,7 @@
         // });
     }
     function passAllFunctions(){
-        var givenValue = document.getElementById("userGivenPlace").value;
+        var givenValue = document.getElementById("userEnteredPlace").value;
         data.then(result => {
             createViz(parseData(result, givenValue));
         });
