@@ -55,7 +55,6 @@ body {
 
 .planeetDiv {
   display: flex;
-  justify-content: space-between;
   margin-top: 2em;
   margin-bottom: 2em;
   align-items: center;
