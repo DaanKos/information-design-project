@@ -14,6 +14,14 @@ body {
   background-color: #6B38E8;
 }
 
+.detailPageProfitChartLegend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 .closeDetailPage {
   color: #aaaaaa;
   font-size: 3em; 
@@ -22,6 +30,7 @@ body {
   height: .5em;
   display: inherit;
   cursor: pointer;
+  position: fixed;
 }
 
 .detailPageSubTitleWrap {
@@ -44,7 +53,7 @@ body {
   justify-content: center;
   background-color: #1D2939;
   width: 16em;
-  margin: auto;
+  margin: 2em auto .5em auto;
 }
 
 .detailPage {
@@ -67,10 +76,20 @@ body {
 .detailPageProfitChart {
   display: flex;
   justify-content: center;
+  margin: .5em auto;
+  width: 20em;
+  background-color: #fff;
+  flex-wrap: wrap;
+}
+
+.detailPageSalaryChart {
+  display: flex;
+  justify-content: center;
   margin: auto;
   width: 20em;
   background-color: #fff;
   flex-wrap: wrap;
+  margin-top: 1.5em;
 }
 
 .detailPageProfitChartSvg {
