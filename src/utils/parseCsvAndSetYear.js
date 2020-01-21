@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
 export default async function parseCsv(givenYear){
-const dataSource = '/data/df_export_2011_2018.csv'
+const dataSource = '/public/data/df_export_2011_2018.csv'
 
 function transformRow(row){
     return {
