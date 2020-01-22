@@ -110,9 +110,21 @@ export default function appendProfitChartDetailPage(givenDiv, profit_perc){
                          .style('font-size', '.8em');
 
     detailPageProfitChartSvg.append("text")
-                         .text((profit_perc)+'%')
+                         .text(function(){
+                            if (profit_perc != 'NA' && profit_perc != '-Inf'){
+                                return (profit_perc + "%");
+                            } else {
+                                return 'Onbekend...';
+                            }
+                         })
                          .attr('y', 39)
-                         .attr('x', (profitChartScale(profit_perc)+5))
+                         .attr('x', function(){
+                            if ((profitChartScale(profit_perc)) < 5 || profit_perc == "NA" || profit_perc == '-Inf'){
+                                return 5;
+                            } else {
+                                return (profitChartScale(profit_perc)+5);
+                            }
+                         })
                          .style('fill', '#1D2939')
                          .style('font-size', '.8em');
 

@@ -3,7 +3,7 @@ export default function appendPlanetSvgOverviewPage(sel) {
         .attr('class', 'svgDiv')
         .append('svg')
         .attr("width", function(d) {
-            if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+            if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                 return 30;
             } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) > 180) {
                 return 180;
@@ -14,7 +14,7 @@ export default function appendPlanetSvgOverviewPage(sel) {
             }
         })
         .attr("height", function(d) {
-            if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+            if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                 return 30;
             } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) > 180) {
                 return 180;
@@ -26,7 +26,7 @@ export default function appendPlanetSvgOverviewPage(sel) {
         })
         .append('circle')
         .attr("cx", function(d) {
-            if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+            if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                 return 15;
             } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                 return 90;
@@ -37,7 +37,7 @@ export default function appendPlanetSvgOverviewPage(sel) {
             }
         })
         .attr("cy", function(d) {
-            if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+            if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                 return 15;
             } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                 return 90;
@@ -48,7 +48,7 @@ export default function appendPlanetSvgOverviewPage(sel) {
             }
         })
         .attr("r", function(d) {
-            if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+            if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                 return 15;
             } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                 return 90;

@@ -5,7 +5,13 @@ export default function appendTextOverviewPage(sel) {
             .text(d => d.bedrijfsnaam);
 
     textDiv.append('p')
-            .text(d => "Winstpercentage: "+(d.perc_winst)+"%")
+            .text(function(d){
+                if (d.perc_winst != 'NA' && d.perc_winst != '-Inf'){
+                    return ("Winstpercentage: "+(d.perc_winst)+'%');
+                } else {
+                    return "Winstpercentage: Onbekend...";
+                }
+            })
             .style('color', function(d){
                 if (d.perc_winst < 0){
                     return '#F65645'

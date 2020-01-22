@@ -80,9 +80,30 @@ export default function appendSalaryChartDetailPage(givenDiv, salary_perc){
                          .style('font-size', '.8em');
 
     detailPageProfitChartSvg.append("text")
-                         .text((salary_perc)+'%')
+                         .text(function(){
+                            if (salary_perc != 'NA' && salary_perc != '-Inf'){
+                                return (salary_perc + "%");
+                            } else {
+                                return 'Onbekend...';
+                            }
+                         })
                          .attr('y', 39)
-                         .attr('x', (profitChartScale(salary_perc)+5))
+                         .attr('x', function(){
+                            if ((profitChartScale(salary_perc)) < 5 || salary_perc == "NA" || salary_perc == '-Inf'){
+                                return 5;
+                            } else if (salary_perc > 5 && salary_perc < 85){
+                                return (profitChartScale(salary_perc)+5);
+                            } else {
+                                return 283;
+                            }
+                         })
+                         .style("text-anchor", function(){
+                            if (salary_perc < 85 || salary_perc == '-Inf' || salary_perc == 'NA'){
+                                return "start";
+                            } else {
+                                return "end";
+                            }
+                         })
                          .style('fill', '#1D2939')
                          .style('font-size', '.8em');
 

@@ -65,7 +65,7 @@
             .attr('class', 'svgDiv')
             .append('svg')
             .attr("width", function(d) {
-                if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                     return 30;
                 } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) > 180) {
                     return 180;
@@ -76,7 +76,7 @@
                 }
             })
             .attr("height", function(d) {
-                if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                     return 30;
                 } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) > 180) {
                     return 180;
@@ -88,7 +88,7 @@
             })
             .append('circle')
             .attr("cx", function(d) {
-                if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                     return 15;
                 } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                     return 90;
@@ -99,7 +99,7 @@
                 }
             })
             .attr("cy", function(d) {
-                if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                     return 15;
                 } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                     return 90;
@@ -110,7 +110,7 @@
                 }
             })
             .attr("r", function(d) {
-                if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                     return 15;
                 } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                     return 90;
@@ -146,7 +146,13 @@
                 .text(d => d.bedrijfsnaam);
 
         textDiv.append('p')
-                .text(d => "Winstpercentage: "+(d.perc_winst)+"%")
+                .text(function(d){
+                    if (d.perc_winst != 'NA' && d.perc_winst != '-Inf'){
+                        return ("Winstpercentage: "+(d.perc_winst)+'%');
+                    } else {
+                        return "Winstpercentage: Onbekend...";
+                    }
+                })
                 .style('color', function(d){
                     if (d.perc_winst < 0){
                         return '#F65645'
@@ -264,9 +270,21 @@
                              .style('font-size', '.8em');
 
         detailPageProfitChartSvg.append("text")
-                             .text((profit_perc)+'%')
+                             .text(function(){
+                                if (profit_perc != 'NA' && profit_perc != '-Inf'){
+                                    return (profit_perc + "%");
+                                } else {
+                                    return 'Onbekend...';
+                                }
+                             })
                              .attr('y', 39)
-                             .attr('x', (profitChartScale(profit_perc)+5))
+                             .attr('x', function(){
+                                if ((profitChartScale(profit_perc)) < 5 || profit_perc == "NA" || profit_perc == '-Inf'){
+                                    return 5;
+                                } else {
+                                    return (profitChartScale(profit_perc)+5);
+                                }
+                             })
                              .style('fill', '#1D2939')
                              .style('font-size', '.8em');
 
@@ -378,9 +396,30 @@
                              .style('font-size', '.8em');
 
         detailPageProfitChartSvg.append("text")
-                             .text((salary_perc)+'%')
+                             .text(function(){
+                                if (salary_perc != 'NA' && salary_perc != '-Inf'){
+                                    return (salary_perc + "%");
+                                } else {
+                                    return 'Onbekend...';
+                                }
+                             })
                              .attr('y', 39)
-                             .attr('x', (profitChartScale(salary_perc)+5))
+                             .attr('x', function(){
+                                if ((profitChartScale(salary_perc)) < 5 || salary_perc == "NA" || salary_perc == '-Inf'){
+                                    return 5;
+                                } else if (salary_perc > 5 && salary_perc < 85){
+                                    return (profitChartScale(salary_perc)+5);
+                                } else {
+                                    return 283;
+                                }
+                             })
+                             .style("text-anchor", function(){
+                                if (salary_perc < 85 || salary_perc == '-Inf' || salary_perc == 'NA'){
+                                    return "start";
+                                } else {
+                                    return "end";
+                                }
+                             })
                              .style('fill', '#1D2939')
                              .style('font-size', '.8em');
 
@@ -418,10 +457,11 @@
 
         d3.select('#parent').selectAll('div').remove();
         let maindivs = d3.select('#parent').selectAll('div').data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
-        let modal =  d3.select('#detailPage').selectAll('div');
+        let modal =  d3.select('#detailPageContent');
 
         maindivs.on('click', function(d) {
-            d3.select('#detailPage').selectAll('div').selectAll('div').remove();
+            console.log(d.perc_winst);
+            d3.select('#detailPageContent').selectAll('div').remove();
             document.getElementById("detailPage").style.display = "block";
 
             modal.append('div')
@@ -454,7 +494,7 @@
                 .attr('class', 'detailPageSvgDiv')
                 .append('svg')
                 .attr("width", function() {
-                    if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                    if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                         return 30;
                     } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) > 180) {
                         return 180;
@@ -465,7 +505,7 @@
                     }
                 })
                 .attr("height", function() {
-                    if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                    if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                         return 30;
                     } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) > 180) {
                         return 180;
@@ -477,7 +517,7 @@
                 })
                 .append('circle')
                 .attr("cx", function() {
-                    if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                    if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                         return 15;
                     } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                         return 90;
@@ -488,7 +528,7 @@
                     }
                 })
                 .attr("cy", function() {
-                    if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                    if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                         return 15;
                     } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                         return 90;
@@ -499,7 +539,7 @@
                     }
                 })
                 .attr("r", function() {
-                    if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                    if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                         return 15;
                     } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                         return 90;

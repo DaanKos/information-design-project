@@ -11,7 +11,7 @@ a {
 
 body {
   margin: 0px;
-  background-color: #6B38E8;
+  background-color: #2E2D5E;
 }
 
 .detailPageProfitChartLegend {
@@ -23,14 +23,17 @@ body {
 }
 
 .closeDetailPage {
-  color: #aaaaaa;
-  font-size: 3em; 
-  font-weight: 900;
-  margin-left: 0.5em;
-  height: .5em;
-  display: inherit;
+  color: #000;
+  margin: 1em 0 0 1em;
   cursor: pointer;
   position: fixed;
+}
+
+.closeDetailPage svg {
+  padding: .25em;
+  border-radius: 1em;
+  background-color: #fff;
+  color: #2E2D5E;
 }
 
 .detailPageSubTitleWrap {
@@ -51,13 +54,13 @@ body {
 .detailPageTitleWrap {
   display: flex;
   justify-content: center;
-  background-color: #1D2939;
   width: 16em;
   margin: 2em auto .5em auto;
 }
 
 .detailPage {
   display: none;
+  background-color: #2E2D5E;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -65,7 +68,6 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: #1D2939;
 }
 
 .detailPageContent {
@@ -118,18 +120,19 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  background-color:#6B38E8;
+  background-color:#2E2D5E;
   padding: .25em 0 .25em 0;
 }
 
 .searchFieldWrap button {
   display: block;
-  color: black;
-  background-color: white;
-  font-size: 1em;
-  padding: .5em;
-  border: none;
-  border-radius: .5em;
+  background-color: #fff;
+  border-top: solid 2px;
+  border-right: solid 2px;
+  border-bottom: solid 2px;
+  border-left: none;
+  padding: .3em 1em;
+  border-color:#6B38E8;
 }
 
 .searchFieldWrap input {
@@ -138,9 +141,11 @@ body {
   background-color: white;
   font-size: 1em;
   padding: .5em;
-  border: none;
-  border-radius: .5em;
-  margin-right: .5em;
+  border-top: solid 2px;
+  border-right: none;
+  border-left: solid 2px;
+  border-bottom: solid 2px;
+  border-color:#6B38E8;
 }
 
 #parent {
@@ -201,7 +206,6 @@ body {
 }
 
 .detailPageSvgDiv {
-  background-color: #1D2939;
   display: flex;
   align-items: center;
   justify-content: center;

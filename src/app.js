@@ -12,10 +12,11 @@ function createViz(givenData) {
 
     d3.select('#parent').selectAll('div').remove();
     let maindivs = d3.select('#parent').selectAll('div').data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
-    let modal =  d3.select('#detailPage').selectAll('div')
+    let modal =  d3.select('#detailPageContent')
 
     maindivs.on('click', function(d) {
-        d3.select('#detailPage').selectAll('div').selectAll('div').remove();
+        console.log(d.perc_winst);
+        d3.select('#detailPageContent').selectAll('div').remove();
         document.getElementById("detailPage").style.display = "block";
 
         modal.append('div')
@@ -48,7 +49,7 @@ function createViz(givenData) {
             .attr('class', 'detailPageSvgDiv')
             .append('svg')
             .attr("width", function() {
-                if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                     return 30;
                 } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) > 180) {
                     return 180;
@@ -59,7 +60,7 @@ function createViz(givenData) {
                 }
             })
             .attr("height", function() {
-                if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                     return 30;
                 } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*45) > 180) {
                     return 180;
@@ -71,7 +72,7 @@ function createViz(givenData) {
             })
             .append('circle')
             .attr("cx", function() {
-                if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                     return 15;
                 } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                     return 90;
@@ -82,7 +83,7 @@ function createViz(givenData) {
                 }
             })
             .attr("cy", function() {
-                if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                     return 15;
                 } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                     return 90;
@@ -93,7 +94,7 @@ function createViz(givenData) {
                 }
             })
             .attr("r", function() {
-                if (d.perc_winst < 1 || d.perc_winst == 'NA') {
+                if (d.perc_winst < 1 || d.perc_winst == 'NA' || d.perc_winst == '-Inf') {
                     return 15;
                 } else if (((Math.sqrt((d.perc_winst)/(Math.PI)))*22.5) > 90) {
                     return 90;
