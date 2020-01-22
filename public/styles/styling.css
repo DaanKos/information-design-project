@@ -14,6 +14,87 @@ body {
   background-color: #2E2D5E;
 }
 
+.purpleText {
+  color: #6B38E8;
+}
+
+.bold {
+  font-weight: 700 !important;
+}
+
+.semiBold {
+  font-weight: 600 !important;
+}
+
+.underline {
+  border-bottom: solid 2px;
+}
+
+.underlineColorGreen{
+  border-color: #1BEAAE;
+}
+
+.underlineColorRed{
+  border-color: #F65645;
+}
+
+.underlineColorYellow{
+  border-color: #FAFF2E;
+}
+  
+.fixedPointerHeader{
+  position: fixed;
+  height: 50px;
+  background-color: #d8cedb;
+  display: flex;
+  width: 100%;
+  top: 0;
+  padding: 0 10%;
+}
+
+.fixedPointerHeaderTriangleWrap {
+  background-color: #1D2939;
+  width: 100%;
+}
+
+.introductionWrap{
+  margin-top: 50px;
+  background-color: #F2F2F2;
+  padding: 1em 0;
+}
+
+.introductionText {
+  padding: 0.5em 2em;
+}
+
+.introductionTitle {
+  padding: 0.5em 2em;
+}
+
+.introductionTitle h1 {
+  font-weight: 600;
+  color: #1D2939;
+  margin: 0;
+}
+
+.introductionText p {
+  font-weight: 400;
+  line-height: 32px;
+  color: #1D2939;
+  margin: 0;
+}
+
+.fixedPointerHeaderLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1em;
+}
+
+.svgGradientPresets {
+  display: block;
+}
+
 .detailPageDataInText{
   width: 20em;
   margin: auto;
@@ -130,7 +211,7 @@ body {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  /* position: fixed; */
   left: 0;
   right: 0;
   background-color:#2E2D5E;
@@ -236,12 +317,6 @@ body {
   text-decoration: none;
   font-weight: 900;
   padding: .5em 0em;
-}
-
-h1 {
-  text-align: center;
-  font-weight: 700;
-  color: #fff;
 }
 
 h2 {

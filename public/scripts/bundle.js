@@ -494,6 +494,7 @@
         maindivs.on('click', function(d) {
             console.log(d.perc_winst);
             d3.select('#detailPageContent').selectAll('div').remove();
+            d3.select('#detailPageContent').selectAll('a').remove();
             document.getElementById("detailPage").style.display = "block";
 
             modal.append('div')
