@@ -22,6 +22,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #6B38E8;
 }
 
 .searchFieldFormPlaceLabel input {
@@ -38,7 +39,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  width: 2em;
 }
 
 
