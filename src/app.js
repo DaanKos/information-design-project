@@ -5,6 +5,7 @@ import appendPlanetSvgOverviewPage from "./utils/appendPlanetSvgOverviewPage";
 import appendTextOverviewPage from "./utils/appendTextOverviewPage";
 import appendProfitChartDetailPage from "./utils/appendProfitChartDetailPage";
 import appendSalaryChartDetailPage from "./utils/appendSalaryChartDetailPage";
+import appendDataInTextDetailPage from "./utils/appendDataInTextDetailPage";
 
 function createViz(givenData) {
     // console.log("Create viz is running...");
@@ -127,6 +128,15 @@ function createViz(givenData) {
 
         let detailPageSalaryChart = modal.append('div').attr('class', 'detailPageSalaryChart');
         appendSalaryChartDetailPage(detailPageSalaryChart, d.perc_loon);
+
+        let detailPageDataInText = modal.append('div').attr('class', 'detailPageDataInText');
+        appendDataInTextDetailPage(detailPageDataInText, d.omzet, d.winst, d.personeelskostentotaal)
+
+        modal.append('a')
+             .attr('class', 'detailPageContactLink')
+             .attr('href', 'https://pointer.kro-ncrv.nl/contact')
+             .attr('target', '_blank')
+             .text('Weet je meer over dit bedrijf of zie je iets opvallends? Meld het ons anoniem.');
     });
 
     maindivs.each(function(_, i) {
@@ -150,6 +160,7 @@ function passAllFunctions(){
 const data = parseCsvAndSetYear(2018);
 
 document.getElementById("userSearchButton").onclick = function() {passAllFunctions()};
+
 document.getElementById("closeDetailPage").onclick = function() {
     document.getElementById("detailPage").style.display = "none";
 };

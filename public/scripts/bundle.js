@@ -451,6 +451,38 @@
                                    .style('font-size', '.9em');
     }
 
+    // This code has been written by Alen Nikolov, found at https://stackoverflow.com/a/49259225/12734791
+
+    function getNumberWithCommas(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function appendDataInTextDetailPage(givenDiv, revenue, profit, salaryCostTotal){
+        let detailPageProfitChartRevenue = givenDiv.append('div').attr('class', 'detailPageProfitChartRevenue');
+
+        detailPageProfitChartRevenue.append('p')
+                                  .text('Omzet:');
+
+        detailPageProfitChartRevenue.append('p')
+                                  .text("€ " + getNumberWithCommas(revenue));
+        
+        let detailPageProfitChartProfit = givenDiv.append('div').attr('class', 'detailPageProfitChartProfit');
+
+        detailPageProfitChartProfit.append('p')
+                                   .text('Winst:');
+                              
+        detailPageProfitChartProfit.append('p')
+                                   .text("€ " + getNumberWithCommas(profit));
+
+        let detailPageProfitChartSalaryCostTotal = givenDiv.append('div').attr('class', 'detailPageProfitChartSalaryCostTotal');
+
+        detailPageProfitChartSalaryCostTotal.append('p')
+                                            .text('Personeelskosten:');
+                              
+        detailPageProfitChartSalaryCostTotal.append('p')
+                                            .text("€ " + getNumberWithCommas(salaryCostTotal));
+    }
+
     function createViz(givenData) {
         // console.log("Create viz is running...");
         // console.log("This is given data at the moment of createViz firing: ", givenData);
@@ -572,6 +604,15 @@
 
             let detailPageSalaryChart = modal.append('div').attr('class', 'detailPageSalaryChart');
             appendSalaryChartDetailPage(detailPageSalaryChart, d.perc_loon);
+
+            let detailPageDataInText = modal.append('div').attr('class', 'detailPageDataInText');
+            appendDataInTextDetailPage(detailPageDataInText, d.omzet, d.winst, d.personeelskostentotaal);
+
+            modal.append('a')
+                 .attr('class', 'detailPageContactLink')
+                 .attr('href', 'https://pointer.kro-ncrv.nl/contact')
+                 .attr('target', '_blank')
+                 .text('Weet je meer over dit bedrijf of zie je iets opvallends? Meld het ons anoniem.');
         });
 
         maindivs.each(function(_, i) {
@@ -593,6 +634,7 @@
     const data = parseCsv(2018);
 
     document.getElementById("userSearchButton").onclick = function() {passAllFunctions();};
+
     document.getElementById("closeDetailPage").onclick = function() {
         document.getElementById("detailPage").style.display = "none";
     };

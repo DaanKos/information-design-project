@@ -14,6 +14,19 @@ body {
   background-color: #2E2D5E;
 }
 
+.detailPageDataInText{
+  width: 20em;
+  margin: auto;
+  margin-top: 1.5em;
+  background-color: #fff;
+}
+
+.detailPageDataInText div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1em;
+}
+
 .detailPageProfitChartLegend {
   display: flex;
   justify-content: center;
@@ -213,6 +226,17 @@ body {
   padding-bottom: 1em;
 }
 
+.detailPageContactLink {
+  display: block;
+  width: 20em;
+  margin: 1.5em auto;
+  text-align: center;
+  background-color: #FAFF2E;
+  color: #000;
+  text-decoration: none;
+  font-weight: 900;
+  padding: .5em 0em;
+}
 
 h1 {
   text-align: center;
