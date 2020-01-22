@@ -21,9 +21,10 @@ Dit is mijn repository voor het Information Design Project. Ik heb dit project g
 
 ## Bekende bugs
 * De html/css/js code is nog erg messy
-* De data wordt nog niet opgeschoond voordat deze wordt gebruikt in de applicatie
 * Wanneer je scrollt op de detailpagina, scrollt de overzichtspagina ook mee
 * Er is (nog) geen desktop versie beschikbaar, alles is gericht op schermen van mobiel formaat
+* De sorteer feature mist
+* De "ga naar willekeurig zorgstelsel" feature mist
 
 ## Lokale installatie
 ### Installatie
