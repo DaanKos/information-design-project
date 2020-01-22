@@ -13,7 +13,7 @@ Dit is mijn repository voor het Information Design Project. Ik heb dit project g
 * [Doelgroep](#doelgroep)
 * [Het concept](#het-concept)
 * [Features](#features)
-* [Gebruikte data & verwerken data](#gebruikte-data--verwerken-data)
+* [Gebruikte data & verwerken data](#gebruikte-data)
 * [Credits](#credits)
 
 ## Link naar de applicatie
@@ -23,6 +23,7 @@ Dit is mijn repository voor het Information Design Project. Ik heb dit project g
 * De html/css/js code is nog erg messy
 * De data wordt nog niet opgeschoond voordat deze wordt gebruikt in de applicatie
 * Wanneer je scrollt op de detailpagina, scrollt de overzichtspagina ook mee
+* Er is (nog) geen desktop versie beschikbaar, alles is gericht op schermen van mobiel formaat
 
 ## Lokale installatie
 ### Installatie
@@ -73,23 +74,20 @@ Als ik nog actief aan dit project werk is het slim om af en toe een ```git pull`
 - [x] Meer ervaring opdoen met d3.js
 
 ## Introductie
-Voor het vak Functional Programming heb ik de opdracht gekregen om aan de slag te gaan met de database van het NMVW (Nationaal Musea van Wereldkunde).
+Voor dit Information Desing Project kregen we de keuze uit verschillende opdrachtgevers die verschillende projecten aanboden. Hierbij heb ik voor het project van Pointer (KRO-NCRV) gekozen. Het project dat zij aanboden heeft te maken met het topic Zorgcowboys, iets waar de datajournalisten van Pointer al een langere tijd mee bezig zijn. Zorgcowboys zijn ondernemers die zorginstellingen hebben opgericht met verkeerde intenties, namelijk het maken van veel winst dat in hun eigen zakken beland, en zijn dus niet gericht op het leveren van goede zorg op maat.
 
-Het NMVW heeft een ontzettend grote collectie, en maar een deel hiervan wordt tentoongesteld in de musea die bij het NMVW horen. 
-Deze grote collectie is online te bekijken, maar hier komen maar weinig mensen op af.
+Pointer is in de jaarrekeningen van alle gehandicaptenzorg, geestelijke gezondheidszorg en thuiszorg instellingen gedoken. Ze hebben al deze data verwerkt in een dataset, maar ze waren nog op zoek naar een manier om deze data inzichtelijk te maken voor de bezoekers van hun website. Met een inzichtelijke manier om de data te bekijken, krijgen mensen de mogelijkheid om hun eigen zorginstelling te checken en te zien of deze instelling een potentiele zorgcowboy is.
 
-Aan mij de taak om de data die in de database beschikbaar is te verwerken in een datavisualisatie die mensen dichter bij de collectie kan brengen op een informatieve en overzichtelijke manier.
+Aan ons als groep de taak om deze dataset makkelijk doorzoekbaar en inzichtelijk aan de lezers van Pointer aan te bieden.
 
 ## Doelgroep
-Dit concept is vooral passend voor een online omgeving. In een volledig uitgewerkte datavisualisatie wil ik de gebruiker de mogelijkheid geven om in te zoomen op de wereldkaart, zo kan de gebruiker ook de details zien van de landen met een kleinere omvang.
-
-Verder denk ik dat mijn concept eigenlijk meerdere doelgroepen kent. Het is een simpel te begrijpen visualisatie, dus mensen die weinig over de collectie weten kunnen er makkelijk mee aan de slag. Toch is het ook interessant voor mensen die wat bekender zijn met de collectie omdat de visualistie nieuwe inzichten brengt die eerder niet bekend waren.
+Dit concept is gericht op de lezers van de Pointer website. Het is een interactieve datavisualisatie bedoeld voor een digitale omgeving. Op het moment van schrijven komen de lezers van Pointer voornamelijk vanaf mobiele apparaten op de website, en is de uitwerking vooralsnog alleen gericht op schermen van mobiel formaat.
 
 ## Features
 * Ontdek welke categorie het vaakst voorkomt in ieder land op een wereldkaart en leer meer over wat de verschillende landen op de wereld hebben bijgedragen aan de collectie.
 
-## Gebruikte data & verwerken data
-In de applicatie wordt data opgehaald uit de collectie database van het NMVW. Hiervoor gebruik ik een SPARQL query die objecten ophaalt die aan vooraf opgestelde voorwaarden voldoen. Meer hierover in de wiki op de [SPARQL query](https://github.com/DaanKos/functional-programming/wiki/SPARQL-query) pagina. De opgehaalde data heb ik opgeschoond en getransformeerd met JavaScript, hoe ik dit heb gedaan is te lezen op de  [data ophalen en verwerken](https://github.com/DaanKos/functional-programming/wiki/Data-ophalen-en-verwerken) pagina in de wiki.
+## Gebruikte data
+In de applicatie wordt data gebruikt van Pointer. Deze data wordt lokaal ingeladen, en is dus ook onderdeel van deze repository.
 
 ## Credits
 * In de code wordt in comments gerefereerd naar de bron, mocht deze code niet zelfgeschreven zijn
