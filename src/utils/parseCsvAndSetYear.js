@@ -1,5 +1,7 @@
 import * as d3 from 'd3';
 
+// This function is based on an example by Laurens at https://vizhub.com/Razpudding/f99e6547637e4b029265fc053221b43b?edit=files&file=index.js
+
 export default async function parseCsv(givenYear){
 const dataSource = '/data/df_export_2011_2018.csv'
 

@@ -4,7 +4,6 @@ export default function parseData(givenData, givenCity){
     
     // All sorting functions based on code by Olayinka Omole and James Hibberd found at https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
     function alphabeticalSort(a, b) {
-        // Use toUpperCase() to ignore character casing
         const nameA = a.bedrijfsnaam.toLowerCase();
         const nameB = b.bedrijfsnaam.toLowerCase();
       
@@ -14,6 +13,7 @@ export default function parseData(givenData, givenCity){
         } else if (nameA < nameB) {
           comparison = -1;
         }
+        
         return comparison;
     };
       

@@ -140,6 +140,7 @@ function createViz(givenData) {
              .text('Weet je meer over dit bedrijf of zie je iets opvallends? Meld het ons anoniem.');
     });
 
+    // This method of changing the drawing order was provided by Gerardo Furtado at https://stackoverflow.com/a/59808405/12734791
     maindivs.each(function(_, i) {
         if (i % 2) {
             appendTextOverviewPage(d3.select(this))
@@ -160,8 +161,11 @@ function passAllFunctions(){
 
 const data = parseCsvAndSetYear(2018);
 
-document.getElementById("userSearchButton").onclick = function() {passAllFunctions()};
-
 document.getElementById("closeDetailPage").onclick = function() {
     document.getElementById("detailPage").style.display = "none";
 };
+
+document.getElementById('searchFieldForm').addEventListener("submit", function(event){
+    event.preventDefault();
+    passAllFunctions();
+});

@@ -40,15 +40,29 @@
         <div class="introductionText">
             <p>De <span class="semiBold">kleur</span> van een planeet geeft aan welke soort zorg deze zorginstelling levert. Zo kun je zien of deze instelling <span class="underline underlineColorRed">geestelijke gezondheidszorg</span>, <span class="underline underlineColorYellow">gehandicaptenzorg</span> of <span class="underline underlineColorGreen">thuiszorg</span> levert. Sommige planeten hebben een mix van deze kleuren, en leveren dus verschillende soorten zorg.</p>
         </div>
+        <div class="introductionText">
+            <p>Klik op een planeet om de detailpagina te zien. Hier kun je aan de hand van 2 simpele grafieken meer over deze zorginstelling te weten komen. Bij beide grafieken is een door Pointer opgestelde boven of ondergrens zichtbaar. Overschrijdt een zorginstelling deze grens, dan is dat geen goed teken.</p>
+        </div>
+        <div class="introductionText">
+            <p>Onthoud wel dat zorginstellingen met verdachte data niet perse iets verkeerds hebben gedaan. Om er echt achter te komen of een zorginstelling een zorgcowboy is, zullen we een gericht onderzoek naar deze zorginstelling moeten uitvoeren. Veel succes in het Zorgstelsel! </p>
+        </div>
     </div>
-    <div class="searchFieldWrap">
-        <input type="text" id="userEnteredPlace" placeholder="Voer hier een stad/plaats in...">
-        <button id="userSearchButton">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6B38E8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-        </button>
+    <div class="searchFieldWrapTest">
+        <div class="searchFieldWrap">
+            <p class="semiBold">Welk zorgstelsel wil je bekijken?</p>
+            <form id="searchFieldForm">
+                <label class="searchFieldFormPlaceLabel">
+                    <input type="text" id="userEnteredPlace" placeholder="Voer hier een stad/plaats in...">
+                </label>
+                <label class="searchFieldFormSubmitLabel">
+                    <input type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6B38E8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </label>
+            </form>
+        </div>
     </div>
     <div id="parent"></div>
     <div id="detailPage" class="detailPage">

@@ -7,7 +7,6 @@
         
         // All sorting functions based on code by Olayinka Omole and James Hibberd found at https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
         function alphabeticalSort(a, b) {
-            // Use toUpperCase() to ignore character casing
             const nameA = a.bedrijfsnaam.toLowerCase();
             const nameB = b.bedrijfsnaam.toLowerCase();
           
@@ -17,6 +16,7 @@
             } else if (nameA < nameB) {
               comparison = -1;
             }
+            
             return comparison;
         }      
         let selecteddata = givenData.filter(function(d) {
@@ -26,6 +26,8 @@
         selecteddata.sort(alphabeticalSort);
         return selecteddata;
     }
+
+    // This function is based on an example by Laurens at https://vizhub.com/Razpudding/f99e6547637e4b029265fc053221b43b?edit=files&file=index.js
 
     async function parseCsv(givenYear){
     const dataSource = '/data/df_export_2011_2018.csv';
@@ -616,6 +618,7 @@
                  .text('Weet je meer over dit bedrijf of zie je iets opvallends? Meld het ons anoniem.');
         });
 
+        // This method of changing the drawing order was provided by Gerardo Furtado at https://stackoverflow.com/a/59808405/12734791
         maindivs.each(function(_, i) {
             if (i % 2) {
                 appendTextOverviewPage(d3.select(this));
@@ -634,10 +637,13 @@
     }
     const data = parseCsv(2018);
 
-    document.getElementById("userSearchButton").onclick = function() {passAllFunctions();};
-
     document.getElementById("closeDetailPage").onclick = function() {
         document.getElementById("detailPage").style.display = "none";
     };
+
+    document.getElementById('searchFieldForm').addEventListener("submit", function(event){
+        event.preventDefault();
+        passAllFunctions();
+    });
 
 }(d3));

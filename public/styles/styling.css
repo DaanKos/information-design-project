@@ -14,6 +14,36 @@ body {
   background-color: #2E2D5E;
 }
 
+#searchFieldForm input[type="submit"]{
+  display: none;
+}
+
+#searchFieldForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchFieldFormPlaceLabel input {
+  width: 15em;
+  display: block;
+  color: black;
+  background-color: white;
+  font-size: 1em;
+  padding: .5em;
+  border: solid 2px #6B38E8
+}
+
+.searchFieldFormSubmitLabel {
+  position: absolute;
+  margin-left: 13.5em;
+  width: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .purpleText {
   color: #6B38E8;
 }
@@ -50,6 +80,7 @@ body {
   width: 100%;
   top: 0;
   padding: 0 10%;
+  z-index: 1;
 }
 
 .fixedPointerHeaderTriangleWrap {
@@ -61,6 +92,15 @@ body {
   margin-top: 50px;
   background-color: #F2F2F2;
   padding: 1em 0;
+}
+
+.searchFieldWrapTest{
+  height: 16em;
+  background: url('../rocket.png') bottom right no-repeat, linear-gradient(#F2F2F2, #2E2D5E);
+  background-size: 12em auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .introductionText {
@@ -208,14 +248,16 @@ body {
 
 .searchFieldWrap {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  /* position: fixed; */
-  left: 0;
-  right: 0;
-  background-color:#2E2D5E;
-  padding: .25em 0 .25em 0;
+  flex-wrap: wrap;
+  background-color:#fff;
+  margin: 2em;
+  padding: 1.25em;
+  max-width: min-content;
+}
+
+.searchFieldWrap p {
+  margin: 0 0 .5em 0;
+  display: block;
 }
 
 .searchFieldWrap button {
@@ -227,23 +269,6 @@ body {
   border-left: none;
   padding: .3em 1em;
   border-color:#6B38E8;
-}
-
-.searchFieldWrap input {
-  display: block;
-  color: black;
-  background-color: white;
-  font-size: 1em;
-  padding: .5em;
-  border-top: solid 2px;
-  border-right: none;
-  border-left: solid 2px;
-  border-bottom: solid 2px;
-  border-color:#6B38E8;
-}
-
-#parent {
-  margin-top: 5em;
 }
 
 #parent>div {
