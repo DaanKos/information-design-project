@@ -7,7 +7,6 @@ Dit is mijn repository voor het Information Design Project. Ik heb dit project g
 ## Inhoud
 * [Link naar de applicatie](#link-naar-de-applicatie)
 * [Lokale installatie](#lokale-installatie)
-* [Leerdoelen](#leerdoelen)
 * [Introductie](#introductie)
 * [Doelgroep](#doelgroep)
 * [Het concept](#het-concept)
@@ -19,11 +18,11 @@ Dit is mijn repository voor het Information Design Project. Ik heb dit project g
 [Klik hier om de applicatie te gebruiken/bekijken.](https://jolly-liskov-eadef5.netlify.com/)
 
 ## Bekende bugs
-* De html/css/js code is nog erg messy
-* (MOBIEL ONLY) Wanneer je scrollt op de detailpagina, scrollt de overzichtspagina ook mee
-* Er is (nog) geen desktop versie beschikbaar, alles is gericht op schermen van mobiel formaat
-* De sorteer feature mist
-* De "ga naar willekeurig zorgstelsel" feature mist
+* (MOBIEL ONLY) Wanneer je scrollt op de detailpagina, scrollt de overzichtspagina ook mee.
+* De styling van de applicatie is gericht op schermen van mobiel formaat. Er is geen styling voor desktop beschikbaar.
+* De sorteer feature mist.
+* De "ga naar willekeurig zorgstelsel" feature is incompleet, dit is nu nog geen knop maar enkel een tekst met een willekeurige stad.
+* De code is nog messy.
 
 ## Lokale installatie
 ### Installatie
@@ -70,9 +69,6 @@ npm run build
 ### Up to date blijven
 Als ik nog actief aan dit project werk is het slim om af en toe een ```git pull``` uit te voeren om er zeker van te zijn dat je de meest recente versie gebruikt.
 
-## Leerdoelen
-- [x] Meer ervaring opdoen met d3.js
-
 ## Introductie
 Voor dit Information Desing Project kregen we de keuze uit verschillende opdrachtgevers die verschillende projecten aanboden. Hierbij heb ik voor het project van Pointer (KRO-NCRV) gekozen. Het project dat zij aanboden heeft te maken met het topic Zorgcowboys, iets waar de datajournalisten van Pointer al een langere tijd mee bezig zijn. Zorgcowboys zijn ondernemers die zorginstellingen hebben opgericht met verkeerde intenties, namelijk het maken van veel winst dat in hun eigen zakken beland, en zijn dus niet gericht op het leveren van goede zorg op maat.
 
@@ -89,7 +85,7 @@ Dit concept is gericht op de lezers van de Pointer website. Het is een interacti
 * Klik op een planeet om een detailpagina te openen. Op de detailpagina zijn simpele grafieken te zien die gebaseerd zijn op de onderliggende data.
 
 ## Gebruikte data
-In de applicatie wordt data gebruikt van Pointer. Deze data wordt lokaal ingeladen, en is dus ook onderdeel van deze repository.
+In de applicatie wordt data gebruikt van Pointer. Deze data wordt lokaal ingeladen, en is dus ook onderdeel van deze repository. In onze applicatie gebruiken we alleen de data uit 2018 (dit wordt met javascript er uit gefilterd) aangezien dit het meest recente beeld geeft van de zorginstellingen. In de toekomst zou hiervoor ook de data van 2019 gebruikt kunnen worden.
 
 ## Credits
 * In de code wordt in comments gerefereerd naar de bron, mocht deze code niet zelfgeschreven zijn
