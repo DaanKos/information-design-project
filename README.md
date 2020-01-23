@@ -1,6 +1,5 @@
 # Information Design Project - Datavisualisatie: de zorginstellingen van Nederland doorzoekbaar op een aantrekkelijke manier
 
-
 Dit is mijn repository voor het Information Design Project. Ik heb dit project gevolgd van 9-12-2019 t/m 23-01-2020. Het Project is een onderdeel van Information Design in jaar 3 van CMD aan de Hogeschool van Amsterdam.
 
 ![Afbeelding huidige uitwerking concept](https://i.imgur.com/5Jc4iti.png)
@@ -21,7 +20,7 @@ Dit is mijn repository voor het Information Design Project. Ik heb dit project g
 
 ## Bekende bugs
 * De html/css/js code is nog erg messy
-* Wanneer je scrollt op de detailpagina, scrollt de overzichtspagina ook mee
+* (MOBIEL ONLY) Wanneer je scrollt op de detailpagina, scrollt de overzichtspagina ook mee
 * Er is (nog) geen desktop versie beschikbaar, alles is gericht op schermen van mobiel formaat
 * De sorteer feature mist
 * De "ga naar willekeurig zorgstelsel" feature mist
