@@ -24,10 +24,10 @@ body {
 
 #randomPlace p {
   display: block;
-  margin: 2em;
   text-align: center;
   color: rgba(255, 255, 255, 0.8);
-  padding: 1em;
+  margin: 1em auto;
+  padding: 0 3em;
 }
 
 .errorMessage {
