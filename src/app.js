@@ -7,13 +7,23 @@ import appendProfitChartDetailPage from "./utils/appendProfitChartDetailPage";
 import appendSalaryChartDetailPage from "./utils/appendSalaryChartDetailPage";
 import appendDataInTextDetailPage from "./utils/appendDataInTextDetailPage";
 
-function createViz(givenData) {
+function createViz(givenData, randomPlace) {
     // console.log("Create viz is running...");
     // console.log("This is given data at the moment of createViz firing: ", givenData);
 
     d3.select('#parent').selectAll('div').remove();
-    let maindivs = d3.select('#parent').selectAll('div').data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
+    let parent = d3.select('#parent')
+    let maindivs = parent.selectAll('div').data(givenData).enter().append('div').append('div').attr('class', 'planeetDiv');
     let modal =  d3.select('#detailPageContent')
+
+    function errorMessage(){
+        if (givenData.length == 0){
+            parent.append('div')
+                  .append('p')
+                  .attr('class', 'errorMessage')
+                  .text('Geen resultaat gevonden, check de spelling of probeer een andere stad/plaats.');
+        }
+    }
 
     maindivs.on('click', function(d) {
         console.log(d.perc_winst);
@@ -133,12 +143,6 @@ function createViz(givenData) {
 
         let detailPageDataInText = modal.append('div').attr('class', 'detailPageDataInText');
         appendDataInTextDetailPage(detailPageDataInText, d.omzet, d.winst, d.personeelskostentotaal)
-
-        modal.append('a')
-             .attr('class', 'detailPageContactLink')
-             .attr('href', 'https://pointer.kro-ncrv.nl/contact')
-             .attr('target', '_blank')
-             .text('Weet je meer over dit bedrijf of zie je iets opvallends? Meld het ons anoniem.');
     });
 
     // This method of changing the drawing order was provided by Gerardo Furtado at https://stackoverflow.com/a/59808405/12734791
@@ -151,16 +155,30 @@ function createViz(givenData) {
             appendTextOverviewPage(d3.select(this))
         }
     });
+
+    errorMessage();
+
+    let placeForRandomPlace = randomPlace.toLowerCase();
+    let placeForRandomPlaceCapitalized = placeForRandomPlace.charAt(0).toUpperCase() + placeForRandomPlace.slice(1)
+
+    parent.append('div')
+          .attr('id', 'randomPlace')
+          .append('p')
+          .text('Misschien is het zorgstelsel van '+ placeForRandomPlaceCapitalized +' interessant?');
 };
 
 function passAllFunctions(){
     var givenValue = document.getElementById("userEnteredPlace").value;
     data.then(result => {
-        createViz(parseData(result, givenValue))
+        createViz(parseData(result, givenValue), getRandomCity(result))
     });
 };
 
 const data = parseCsvAndSetYear(2018);
+
+function getRandomCity(data){
+    return data[Math.floor(Math.random() * 1586) + 1].plaats
+};
 
 document.getElementById("closeDetailPage").onclick = function() {
     document.getElementById("detailPage").style.display = "none";

@@ -22,5 +22,7 @@ export default function parseData(givenData, givenCity){
     });
 
     selecteddata.sort(alphabeticalSort);
+    console.log("This data gets returned from parseData.js: ", selecteddata)
+    console.log("It's length is: ", selecteddata.length)
     return selecteddata;
 }

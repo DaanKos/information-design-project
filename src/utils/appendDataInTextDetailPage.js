@@ -20,7 +20,7 @@ export default function appendDataInTextDetailPage(givenDiv, revenue, profit, sa
     let detailPageProfitChartSalaryCostTotal = givenDiv.append('div').attr('class', 'detailPageProfitChartSalaryCostTotal');
 
     detailPageProfitChartSalaryCostTotal.append('p')
-                                        .text('Personeelskosten:');
+                                        .text('Loonkosten:');
                           
     detailPageProfitChartSalaryCostTotal.append('p')
                                         .text("€ " + getNumberWithCommas(salaryCostTotal));
