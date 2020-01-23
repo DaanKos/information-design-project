@@ -80,6 +80,8 @@ Aan ons als groep de taak om deze dataset makkelijk doorzoekbaar en inzichtelijk
 Dit concept is gericht op de lezers van de Pointer website. Het is een interactieve datavisualisatie bedoeld voor een digitale omgeving. Op het moment van schrijven komen de lezers van Pointer voornamelijk vanaf mobiele apparaten op de website, en is de uitwerking vooralsnog alleen gericht op schermen van mobiel formaat.
 
 ## Features
+De applicatie gebruikt alleen d3.js als externe dependency
+
 * Gebruik de zoekbalk om een zorgstelsel te generenen op basis van de ingevoerde stad/plaats.
 * Het uiterlijk van de planeten in het gegenereerde zorgstelsel zijn gebaseerd op onderliggende data, zo indiceert de kleur wat voor soort zorg deze instelling levert en is de grootte van planeet gebaseerd op het winstpercentage.
 * Klik op een planeet om een detailpagina te openen. Op de detailpagina zijn simpele grafieken te zien die gebaseerd zijn op de onderliggende data.
