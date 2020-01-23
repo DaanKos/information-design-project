@@ -283,11 +283,9 @@ body {
 
 .planeetDiv {
   display: flex;
-  margin-top: 2em;
-  margin-bottom: 2em;
   align-items: center;
-  max-width: 18em;
   cursor: pointer;
+  margin: 2em;
 }
 
 .planeetDiv div:first-of-type {
