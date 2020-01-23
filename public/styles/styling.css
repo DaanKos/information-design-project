@@ -110,10 +110,14 @@ body {
 
 .introductionText {
   padding: 0.5em 2em;
+  max-width: 35em;
+  margin: auto;
 }
 
 .introductionTitle {
   padding: 0.5em 2em;
+  max-width: 35em;
+  margin: auto;
 }
 
 .introductionTitle h1 {
