@@ -171,3 +171,16 @@ document.getElementById('searchFieldForm').addEventListener("submit", function(e
     event.preventDefault();
     passAllFunctions();
 });
+
+window.onscroll = function() {stickyForm()};
+
+let form = document.getElementById("searchFieldForm");
+let sticky = form.offsetTop-50;
+
+function stickyForm() {
+  if (window.pageYOffset > sticky) {
+    form.classList.add("sticky");
+  } else {
+    form.classList.remove("sticky");
+  }
+};

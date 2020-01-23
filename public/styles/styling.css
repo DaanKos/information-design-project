@@ -14,6 +14,10 @@ body {
   background-color: #2E2D5E;
 }
 
+.sticky {
+  position: fixed;
+}
+
 #searchFieldForm input[type="submit"]{
   display: none;
 }
@@ -23,6 +27,8 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #6B38E8;
+  top: 60px;
+  right: 1em;
 }
 
 .searchFieldFormPlaceLabel input {
