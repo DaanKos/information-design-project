@@ -77,6 +77,10 @@ body {
   font-weight: 600 !important;
 }
 
+.normal {
+  font-weight: 400 !important;
+}
+
 .underline {
   border-bottom: solid 2px;
 }
@@ -124,7 +128,7 @@ body {
   align-items: center;
 }
 
-.introductionText {
+.introductionText, .introductionTitle {
   padding: 0.5em 2em;
   max-width: 35em;
   margin: auto;
@@ -134,20 +138,12 @@ body {
   font-style: italic;
 }
 
-.introductionTitle {
-  padding: 0.5em 2em;
-  max-width: 35em;
-  margin: auto;
-}
-
 .introductionTitle h1 {
-  font-weight: 600;
   color: #1D2939;
   margin: 0;
 }
 
 .introductionText p {
-  font-weight: 400;
   line-height: 32px;
   color: #1D2939;
   margin: 0;
@@ -271,10 +267,6 @@ body {
   width: 18em;
 }
 
-.detailPageProfitChartTitle p {
-  font-weight: 700;
-}
-
 .searchFieldWrap {
   display: flex;
   flex-wrap: wrap;
@@ -326,7 +318,7 @@ body {
 
 .textDiv p:first-of-type {
   font-size: 1.05em;
-  font-weight: 900;
+  font-weight: 700;
   margin: 0;
   display: block;
   width: 100%;
@@ -359,7 +351,7 @@ body {
   padding-bottom: 1em;
 }
 
-.detailPageContactLink {
+.detailPageContactLink a {
   display: block;
   width: 20em;
   margin: 1.5em auto;

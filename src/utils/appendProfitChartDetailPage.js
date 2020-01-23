@@ -40,6 +40,7 @@ export default function appendProfitChartDetailPage(givenDiv, profit_perc){
     let detailPageProfitChartTitle = givenDiv.append('div').attr('class', 'detailPageProfitChartTitle')
 
     detailPageProfitChartTitle.append('p')
+                              .attr('class', 'bold')
                               .text('Winspercentage')
 
     let detailPageProfitChartTitleSvg = detailPageProfitChartTitle.append('svg').attr('height', 20).attr('width', 90);
