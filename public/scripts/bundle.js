@@ -498,6 +498,7 @@
             d3.select('#detailPageContent').selectAll('div').remove();
             d3.select('#detailPageContent').selectAll('a').remove();
             document.getElementById("detailPage").style.display = "block";
+            document.getElementById("body").style.overflow = "hidden";
 
             modal.append('div')
                  .attr('class', 'detailPageTitleWrap')
@@ -639,6 +640,7 @@
 
     document.getElementById("closeDetailPage").onclick = function() {
         document.getElementById("detailPage").style.display = "none";
+        document.getElementById("body").style.overflow = "auto";
     };
 
     document.getElementById('searchFieldForm').addEventListener("submit", function(event){
